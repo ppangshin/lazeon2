@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#000000" />
+  <title>LAZEON — Global Dental Laser Company</title>
+  <meta name="description" content="라제온은 다이오드 레이저 기술을 기반으로 차세대 치과 의료기기 플랫폼을 만들어가는 R&D 중심 기업입니다." />
+  <link rel="icon" type="image/png" href="images/lazeon-logo.png" />
+  <style>
+    :root {
+      --bg: #000;
+      --text: #f5f5f5;
+      --muted: rgba(255,255,255,0.65);
+      --accent: #ff6b35;
+      --accent-rgb: 255,107,53;
+      --nav-h: 72px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: var(--bg); height: 100%; overflow-x: hidden; }
+    body {
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Apple SD Gothic Neo", "Pretendard", sans-serif;
+      line-height: 1.5;
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* Hero 섹션 내부에만 보이는 배경 캔버스 */
+    #hero {
+      position: relative;
+      overflow: hidden;
+    }
+    #space-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    #bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(var(--accent-rgb),0.06) 0%, transparent 60%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    #hero .inner { position: relative; z-index: 2; }
+
+    /* Scroll container */
+    #scroll-container {
+      position: relative;
+      height: 100vh;
+      overflow-y: scroll;
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+      z-index: 2;
+    }
+    #scroll-container::-webkit-scrollbar { display: none; }
+    #scroll-container { scrollbar-width: none; }
+
+    .snap-section {
+      scroll-snap-align: start;
+      height: 100vh;
+      height: 100dvh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      flex-shrink: 0;
+      padding: var(--nav-h) 48px 0;
+    }
+    .snap-section > .inner {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Nav */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid rgba(255,255,255,0.08);
+      overflow: visible;
+    }
+    .brand-link {
+      display: flex;
+      align-items: center;
+      overflow: visible;
+      flex-shrink: 0;
+    }
+    .logo-img {
+      height: 20px;
+      width: auto;
+      max-height: 20px;
+      display: block;
+      object-fit: contain;
+      vertical-align: middle;
+    }
+    .logo-text {
+      display: none;
+      font-family: "Arial Black", sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      letter-spacing: -1px;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 32px;
+    }
+    .nav-links a {
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      transition: color 0.2s ease;
+      cursor: pointer;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* Hamburger button (mobile only) */
+    .hamburger {
+      display: none;
+      width: 44px;
+      height: 44px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      padding: 0;
+      z-index: 110;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: #fff;
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.2s ease;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* Mobile menu overlay */
+    .mobile-menu {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 105;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 0 32px;
+      gap: 8px;
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+    }
+    .mobile-menu.open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .mobile-menu a {
+      font-size: 32px;
+      font-weight: 700;
+      color: #fff;
+      padding: 18px 0;
+      letter-spacing: -0.5px;
+      transition: color 0.2s ease;
+      cursor: pointer;
+    }
+    .mobile-menu a:hover,
+    .mobile-menu a:active { color: var(--accent); }
+    .mobile-menu .m-num {
+      font-size: 13px;
+      color: var(--accent);
+      letter-spacing: 2px;
+      margin-right: 12px;
+      font-weight: 600;
+    }
+
+    /* Scroll hint arrow */
+    .scroll-hint {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      cursor: pointer;
+      padding: 8px;
+      opacity: 0;
+      animation: fadeIn 0.8s ease 1.4s forwards;
+    }
+    .scroll-hint svg {
+      display: block;
+      animation: bounce 1.8s ease infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); opacity: 0.55; }
+      50%      { transform: translateY(8px); opacity: 1; }
+    }
+    @keyframes fadeIn { to { opacity: 1; } }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Hero */
+    .hero-content { width: 100%; }
+    .hero-eyebrow {
+      font-size: 13px;
+      letter-spacing: 3px;
+      color: var(--accent);
+      margin: 0 0 28px;
+      text-transform: uppercase;
+      font-weight: 600;
+      opacity: 0;
+      animation: fadeUp 1.2s ease 0.3s forwards;
+    }
+    .hero-title {
+      font-size: clamp(42px, 7vw, 76px);
+      font-weight: 700;
+      line-height: 1.1;
+      margin: 0 0 32px;
+      color: #fff;
+      letter-spacing: -2px;
+      opacity: 0;
+      animation: fadeUp 1.4s ease 0.6s forwards;
+    }
+    .hero-title .glow {
+      color: #fff;
+      text-shadow: 0 0 24px rgba(var(--accent-rgb),0.35), 0 0 48px rgba(var(--accent-rgb),0.18);
+    }
+    .hero-sub {
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 540px;
+      font-weight: 400;
+      opacity: 0;
+      animation: fadeUp 1.6s ease 0.9s forwards;
+    }
+
+    /* Section common */
+    .section-grid {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 64px;
+      align-items: start;
+      width: 100%;
+    }
+    .section-label {
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: var(--accent);
+      margin: 0 0 10px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .section-sub {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      margin: 0;
+      line-height: 1.6;
+    }
+    .section-h2 {
+      font-size: clamp(32px, 4.5vw, 48px);
+      font-weight: 700;
+      line-height: 1.2;
+      margin: 0 0 32px;
+      color: #fff;
+      letter-spacing: -1px;
+    }
+    .section-p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.75);
+      margin: 0 0 18px;
+      font-weight: 400;
+    }
+
+    /* Products */
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .product-card {
+      background: rgba(255,255,255,0.03);
+      border: 0.5px solid rgba(255,255,255,0.1);
+      border-radius: 14px;
+      padding: 32px;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.4s ease;
+    }
+    .product-card.upcoming {
+      background: rgba(255,255,255,0.02);
+      border: 0.5px dashed rgba(255,255,255,0.12);
+      min-height: 160px;
+      padding: 28px;
+    }
+    .product-card:hover {
+      border-color: rgba(var(--accent-rgb),0.35);
+      transform: translateY(-2px);
+    }
+    .badge {
+      font-size: 12px;
+      color: var(--accent);
+      margin: 0 0 16px;
+      letter-spacing: 2px;
+      font-weight: 700;
+    }
+    .product-card.upcoming .badge { color: rgba(255,255,255,0.45); }
+    .product-card h3 {
+      font-size: 28px;
+      font-weight: 800;
+      margin: 0 0 16px;
+      color: #fff;
+      letter-spacing: -0.8px;
+      line-height: 1.2;
+    }
+    .product-card.upcoming h3 {
+      font-size: 22px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.9);
+    }
+    .product-card p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.65);
+      margin: 0;
+    }
+    .tag-row { display: flex; gap: 6px; margin-top: 20px; flex-wrap: wrap; }
+    .tag {
+      font-size: 11px;
+      padding: 5px 11px;
+      border: 0.5px solid rgba(255,255,255,0.2);
+      border-radius: 100px;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* R&D */
+    .rd-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+    }
+    .rd-item {
+      padding: 24px 0;
+      border-top: 0.5px solid rgba(255,255,255,0.12);
+    }
+    .rd-num {
+      font-size: 44px;
+      font-weight: 800;
+      color: var(--accent);
+      margin: 0 0 16px;
+      letter-spacing: -2px;
+      line-height: 1;
+    }
+    .rd-item h4 {
+      font-size: 20px;
+      font-weight: 800;
+      margin: 0 0 12px;
+      color: #fff;
+      letter-spacing: -0.5px;
+      line-height: 1.3;
+    }
+    .rd-item p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.65);
+      margin: 0;
+    }
+    .rd-callout {
+      margin-top: 36px;
+      padding: 24px;
+      background: rgba(var(--accent-rgb),0.06);
+      border-left: 2px solid var(--accent);
+    }
+    .rd-callout p {
+      font-size: 14px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.78);
+      margin: 0;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    .contact-label {
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      color: rgba(255,255,255,0.4);
+      margin: 0 0 10px;
+      text-transform: uppercase;
+    }
+    .contact-main {
+      font-size: 15px;
+      color: #fff;
+      margin: 0 0 6px;
+    }
+    .contact-sub {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      margin: 0;
+      line-height: 1.7;
+    }
+    .contact-footer {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 0.5px solid rgba(255,255,255,0.08);
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.5px;
+    }
+
+    /* ============ Tablet (1024px) ============ */
+    @media (max-width: 1024px) {
+      .section-grid { gap: 40px; }
+      .snap-section { padding: var(--nav-h) 32px 0; }
+    }
+
+    /* ============ Mobile (768px) ============ */
+    @media (max-width: 768px) {
+      :root { --nav-h: 60px; }
+
+      /* Disable snap on mobile - normal scroll feels better */
+      body { overflow: auto; overflow-x: hidden; }
+      #scroll-container {
+        height: auto;
+        overflow-y: visible;
+        scroll-snap-type: none;
+      }
+      .snap-section {
+        height: auto;
+        min-height: auto;
+        padding: calc(var(--nav-h) + 60px) 24px 80px;
+      }
+      .scroll-hint { display: none; }
+
+      /* Nav */
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      /* Hero — full screen on mobile */
+      #hero {
+        min-height: 100vh;
+        min-height: 100dvh;
+        padding: calc(var(--nav-h) + 40px) 24px 80px;
+        display: flex;
+        align-items: center;
+      }
+      .hero-eyebrow {
+        font-size: 11px;
+        letter-spacing: 2.5px;
+        margin: 0 0 20px;
+      }
+      .hero-title {
+        font-size: 40px;
+        letter-spacing: -1.2px;
+        margin: 0 0 20px;
+      }
+      .hero-sub {
+        font-size: 15px;
+        line-height: 1.6;
+      }
+
+      /* Section common */
+      .section-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .section-label {
+        font-size: 11px;
+        margin: 0 0 16px;
+      }
+      .section-h2 {
+        font-size: 32px;
+        letter-spacing: -0.8px;
+        margin: 0 0 24px;
+      }
+      .section-p {
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      /* Products */
+      .product-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      .product-card {
+        padding: 24px;
+        min-height: auto;
+      }
+      .product-card h3 {
+        font-size: 22px;
+        margin: 0 0 12px;
+      }
+      .product-card.upcoming h3 { font-size: 18px; }
+      .product-card p {
+        font-size: 14px;
+        line-height: 1.65;
+      }
+      .tag-row { margin-top: 16px; }
+
+      /* R&D */
+      .rd-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+      .rd-item {
+        padding: 24px 0 18px;
+      }
+      .rd-num {
+        font-size: 32px;
+        margin: 0 0 10px;
+      }
+      .rd-item h4 {
+        font-size: 17px;
+        margin: 0 0 8px;
+      }
+      .rd-item p { font-size: 13px; }
+      .rd-callout {
+        margin-top: 28px;
+        padding: 20px;
+      }
+      .rd-callout p { font-size: 13px; }
+
+      /* R&D section H2 override */
+      #rd .section-h2 { font-size: 28px !important; margin-bottom: 24px !important; }
+
+      /* Contact */
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+      .contact-main { font-size: 16px; }
+      .contact-footer {
+        flex-direction: column;
+        gap: 6px;
+        margin-top: 40px;
+        padding-top: 20px;
+      }
+    }
+
+    /* ============ Small mobile (480px) ============ */
+    @media (max-width: 480px) {
+      .hero-title { font-size: 34px; }
+      .section-h2 { font-size: 28px; }
+      .product-card h3 { font-size: 20px; }
+      .mobile-menu a { font-size: 28px; padding: 14px 0; }
+    }
+
+    /* ============ Safe area (notch/home bar) ============ */
+    @supports (padding: env(safe-area-inset-top)) {
+      nav { padding-left: max(20px, env(safe-area-inset-left)); padding-right: max(20px, env(safe-area-inset-right)); }
+      .snap-section {
+        padding-left: max(24px, env(safe-area-inset-left));
+        padding-right: max(24px, env(safe-area-inset-right));
+      }
+      .mobile-menu {
+        padding-left: max(32px, env(safe-area-inset-left));
+        padding-right: max(32px, env(safe-area-inset-right));
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+    }
+
+    /* ============ Reduced motion ============ */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" onclick="goTo(0);return false;" class="brand-link">
+      <img class="logo-img" alt="LAZEON" src="data:image/png;base64,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" />
+      <span class="logo-text">LAZEON</span>
+    </a>
+    <ul class="nav-links">
+      <li><a onclick="goTo(1)">About</a></li>
+      <li><a onclick="goTo(2)">Products</a></li>
+      <li><a onclick="goTo(3)">R&amp;D</a></li>
+      <li><a onclick="goTo(4)">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a onclick="goToFromMenu(1)"><span class="m-num">01</span>About</a>
+    <a onclick="goToFromMenu(2)"><span class="m-num">02</span>Products</a>
+    <a onclick="goToFromMenu(3)"><span class="m-num">03</span>R&amp;D</a>
+    <a onclick="goToFromMenu(4)"><span class="m-num">04</span>Contact</a>
+  </div>
+
+  <div id="scroll-container">
+
+    <section class="snap-section" id="hero">
+      <canvas id="space-canvas"></canvas>
+      <div id="bg-overlay"></div>
+      <div class="inner hero-content">
+        <p class="hero-eyebrow">Global Dental Laser Company</p>
+        <h1 class="hero-title">
+          The light that<br/>
+          <span class="glow">aligns dental care.</span>
+        </h1>
+        <p class="hero-sub">
+          라제온은 다이오드 레이저 기술을 기반으로<br/>
+          차세대 치과 의료기기 플랫폼을 만들어갑니다.
+        </p>
+      </div>
+      <div class="scroll-hint" onclick="goTo(1)">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M6 9l6 6 6-6" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </section>
+
+    <section class="snap-section" id="about">
+      <div class="inner">
+        <div class="section-grid">
+          <div><p class="section-label">01 — About</p></div>
+          <div>
+            <h2 class="section-h2">레이저 모듈에서<br/>치과 레이저 플랫폼으로.</h2>
+            <p class="section-p">라제온은 다이오드 레이저 기반 의료기기를 자체 설계·제조하는 R&amp;D 중심 기업입니다. 레이저 광원의 핵심 모듈을 직접 다루는 기술력을 바탕으로, 치과 임상 현장에서 실제로 쓰이는 디바이스를 만듭니다.</p>
+            <p class="section-p" style="margin:0;">모듈 단위의 깊은 이해와 완제품 통합 역량을 함께 갖춘 글로벌 덴탈 레이저 컴퍼니를 지향합니다.</p>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-hint" onclick="goTo(2)">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M6 9l6 6 6-6" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </section>
+
+    <section class="snap-section" id="products">
+      <div class="inner">
+        <div class="section-grid">
+          <div>
+            <p class="section-label">02 — Products</p>
+            <p class="section-sub">Dental laser platform</p>
+          </div>
+          <div class="product-grid">
+            <div class="product-card">
+              <div>
+                <p class="badge">CORE</p>
+                <h3>Dental Handpiece</h3>
+                <p>치과용 핸드피스 파이버팁.<br/>정밀한 광 전달과 임상 적용성을 동시에 확보한 라제온의 주력 제품.</p>
+              </div>
+              <div class="tag-row"><span class="tag">Fiber tip</span><span class="tag">KC 인증</span></div>
+            </div>
+            <div class="product-card">
+              <div>
+                <p class="badge">CORE</p>
+                <h3>LED Mouthpiece</h3>
+                <p>마우스피스형 LED 광 조사 디바이스.<br/>착용 기반 구강 케어 솔루션을 위한 라제온의 신규 플랫폼.</p>
+              </div>
+              <div class="tag-row"><span class="tag">Wearable</span><span class="tag">Oral care</span></div>
+            </div>
+            <div class="product-card upcoming">
+              <div>
+                <p class="badge">UPCOMING</p>
+                <h3>Laser Mouthpiece</h3>
+                <p>다이오드 레이저 기반 광치료 마우스피스.</p>
+              </div>
+            </div>
+            <div class="product-card upcoming">
+              <div>
+                <p class="badge">UPCOMING</p>
+                <h3>Laser Debonder</h3>
+                <p>치아교정 브라켓 안전 디본딩 의료기기.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-hint" onclick="goTo(3)">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M6 9l6 6 6-6" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </section>
+
+    <section class="snap-section" id="rd">
+      <div class="inner">
+        <div class="section-grid">
+          <div>
+            <p class="section-label">03 — R&amp;D</p>
+            <p class="section-sub">Core technology</p>
+          </div>
+          <div>
+            <h2 class="section-h2" style="font-size:clamp(26px,3.5vw,36px);margin-bottom:36px;">모듈을 다루는 회사가<br/>만들 수 있는 의료기기.</h2>
+            <div class="rd-grid">
+              <div class="rd-item">
+                <p class="rd-num">01</p>
+                <h4>Laser Module</h4>
+                <p>다이오드 레이저 모듈 자체 설계 및 광학 정렬 기술</p>
+              </div>
+              <div class="rd-item">
+                <p class="rd-num">02</p>
+                <h4>Device Integration</h4>
+                <p>모듈을 임상에서 쓰이는 완제품으로 통합하는 엔지니어링 역량</p>
+              </div>
+              <div class="rd-item">
+                <p class="rd-num">03</p>
+                <h4>Medical Compliance</h4>
+                <p>의료기기 인증 체계를 고려한 R&amp;D 및 품질관리 프로세스</p>
+              </div>
+            </div>
+            <div class="rd-callout">
+              <p>기업부설연구소를 운영하며, 다이오드 레이저 기반 치아교정 브라켓 안전 디본딩 의료기기 개발을 비롯한 차세대 덴탈 레이저 플랫폼 연구를 진행하고 있습니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-hint" onclick="goTo(4)">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M6 9l6 6 6-6" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </section>
+
+    <section class="snap-section" id="contact">
+      <div class="inner">
+        <div class="section-grid">
+          <div>
+            <p class="section-label">04 — Contact</p>
+            <p class="section-sub">Let's talk</p>
+          </div>
+          <div>
+            <h2 class="section-h2">함께 일하고 싶다면<br/>언제든 연락주세요.</h2>
+            <div class="contact-grid">
+              <div>
+                <p class="contact-label">Company</p>
+                <p class="contact-main">주식회사 라제온</p>
+                <p class="contact-sub">LAZEON Inc.<br/>광주광역시</p>
+              </div>
+              <div>
+                <p class="contact-label">Inquiry</p>
+                <p class="contact-main">business@lazeon.com</p>
+                <p class="contact-sub">제품·기술·파트너십<br/>모든 문의 환영합니다</p>
+              </div>
+            </div>
+            <div class="contact-footer">
+              <span>© 2026 LAZEON Inc.</span>
+              <span>All rights reserved.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+  // Logo fallback: if image fails to load, show text
+  (function() {
+    const img = document.querySelector('.brand-link .logo-img');
+    const text = document.querySelector('.brand-link .logo-text');
+    if (!img || !text) return;
+    const showText = () => {
+      img.style.display = 'none';
+      text.style.display = 'inline-block';
+    };
+    img.addEventListener('error', showText);
+    // If already failed by the time script runs
+    if (img.complete && img.naturalWidth === 0) showText();
+  })();
+  </script>
+
+  <script>
+  const container = document.getElementById('scroll-container');
+  const sectionEls = Array.from(document.querySelectorAll('.snap-section'));
+  let current = 0;
+  let isScrolling = false;
+  const DURATION = 700;
+
+  const isDesktop = () => window.innerWidth > 768;
+
+  function goTo(idx) {
+    if (idx < 0 || idx >= sectionEls.length) return;
+    current = idx;
+    if (isDesktop()) {
+      sectionEls[idx].scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      // Mobile: scroll window instead of container
+      const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 60;
+      const top = sectionEls[idx].getBoundingClientRect().top + window.scrollY - (idx === 0 ? 0 : 0);
+      window.scrollTo({ top: idx === 0 ? 0 : top, behavior: 'smooth' });
+    }
+  }
+
+  // Mobile hamburger menu
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const btn = document.getElementById('hamburger');
+    const isOpen = menu.classList.toggle('open');
+    btn.classList.toggle('open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  }
+  function closeMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const btn = document.getElementById('hamburger');
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function goToFromMenu(idx) {
+    closeMobileMenu();
+    setTimeout(() => goTo(idx), 300);
+  }
+
+  container.addEventListener('wheel', e => {
+    if (!isDesktop()) return;
+    e.preventDefault();
+    if (isScrolling) return;
+    isScrolling = true;
+    if (e.deltaY > 0) goTo(Math.min(current + 1, sectionEls.length - 1));
+    else goTo(Math.max(current - 1, 0));
+    setTimeout(() => { isScrolling = false; }, DURATION);
+  }, { passive: false });
+
+  let touchStartY = 0;
+  container.addEventListener('touchstart', e => {
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+  container.addEventListener('touchend', e => {
+    if (!isDesktop()) return;
+    if (isScrolling) return;
+    const diff = touchStartY - e.changedTouches[0].clientY;
+    if (Math.abs(diff) < 40) return;
+    isScrolling = true;
+    if (diff > 0) goTo(Math.min(current + 1, sectionEls.length - 1));
+    else goTo(Math.max(current - 1, 0));
+    setTimeout(() => { isScrolling = false; }, DURATION);
+  }, { passive: true });
+
+  document.addEventListener('keydown', e => {
+    // ESC closes mobile menu
+    if (e.key === 'Escape') {
+      const menu = document.getElementById('mobileMenu');
+      if (menu && menu.classList.contains('open')) {
+        closeMobileMenu();
+        return;
+      }
+    }
+    if (!isDesktop()) return;
+    if (isScrolling) return;
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+      e.preventDefault();
+      isScrolling = true;
+      goTo(Math.min(current + 1, sectionEls.length - 1));
+      setTimeout(() => { isScrolling = false; }, DURATION);
+    }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+      e.preventDefault();
+      isScrolling = true;
+      goTo(Math.max(current - 1, 0));
+      setTimeout(() => { isScrolling = false; }, DURATION);
+    }
+  });
+
+  /* Space + laser canvas */
+  (function() {
+    const canvas = document.getElementById('space-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let w, h, stars, dust, lasers, shootingStars, nebulas, dpr, lastTime = 0;
+
+    function resize() {
+      dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+      w = rect.width; h = rect.height;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      initScene();
+    }
+
+    function initScene() {
+      const isMobile = window.innerWidth <= 768;
+      stars = [];
+      const density = isMobile ? 4500 : 2200; // 모바일은 별 개수 절반으로
+      const count = Math.floor((w * h) / density);
+      for (let i = 0; i < count; i++) {
+        const tier = Math.random();
+        let color, sizeMul;
+        if (tier < 0.7) { color = '255,255,255'; sizeMul = 1; }
+        else if (tier < 0.88) { color = '180,210,255'; sizeMul = 1.2; }
+        else { color = '255,200,160'; sizeMul = 1.3; }
+        stars.push({
+          x: Math.random() * w, y: Math.random() * h,
+          z: Math.random() * 0.9 + 0.1,
+          r: (Math.random() * 1.4 + 0.3) * sizeMul,
+          tw: Math.random() * Math.PI * 2,
+          tws: Math.random() * 0.03 + 0.008,
+          vx: -((Math.random() * 0.35) + 0.05),
+          color
+        });
+      }
+      dust = [];
+      const dustCount = isMobile ? 5 : 10;
+      for (let i = 0; i < dustCount; i++) dust.push(makeDust(true));
+      lasers = [];
+      shootingStars = [];
+      nebulas = [
+        { x: w * 0.78, y: h * 0.42, r: w * 0.45, color: 'rgba(255,107,53,0.05)' },
+        { x: w * 0.18, y: h * 0.7,  r: w * 0.35, color: 'rgba(100,80,180,0.04)' },
+        { x: w * 0.5,  y: h * 0.15, r: w * 0.3,  color: 'rgba(80,140,200,0.03)' }
+      ];
+    }
+
+    function makeDust(initial) {
+      return {
+        x: initial ? Math.random() * w : w + 10, y: Math.random() * h,
+        vx: -(Math.random() * 0.8 + 0.3), vy: (Math.random() - 0.5) * 0.2,
+        life: Math.random() * 400 + 300, maxLife: 700,
+        hue: Math.random() < 0.5 ? '255,107,53' : '255,180,140'
+      };
+    }
+
+    function spawnShootingStar() {
+      const fromLeft = Math.random() < 0.5;
+      const y = Math.random() * h * 0.5;
+      return {
+        x1: fromLeft ? -50 : w + 50, y1: y,
+        x2: fromLeft ? w * 0.7 + Math.random() * w * 0.3 : w * 0.3 - Math.random() * w * 0.3,
+        y2: y + h * 0.4 + Math.random() * h * 0.2,
+        bornAt: performance.now(),
+        duration: 800 + Math.random() * 400, trail: 0.25
+      };
+    }
+
+    function spawnLaser() {
+      const isHorizontal = Math.random() < 0.7;
+      let x1, y1, x2, y2;
+      if (isHorizontal) {
+        const y = Math.random() * h * 0.7 + h * 0.15;
+        const dir = Math.random() < 0.5 ? 1 : -1;
+        if (dir > 0) { x1 = -150; y1 = y; x2 = w + 150; y2 = y + (Math.random() - 0.5) * 30; }
+        else { x1 = w + 150; y1 = y; x2 = -150; y2 = y + (Math.random() - 0.5) * 30; }
+      } else {
+        x1 = Math.random() * w; y1 = -50;
+        x2 = x1 + (Math.random() - 0.5) * 200; y2 = h + 50;
+      }
+      return {
+        x1, y1, x2, y2, duration: 600 + Math.random() * 400,
+        length: 0.18 + Math.random() * 0.12, bornAt: performance.now(),
+        intensity: 0.7 + Math.random() * 0.4,
+        thickness: Math.random() < 0.5 ? 0.7 : 1.1
+      };
+    }
+
+    function drawLaser(laser, now) {
+      const elapsed = now - laser.bornAt;
+      const total = laser.duration + 200;
+      if (elapsed > total) return false;
+      const headT = Math.min(1, elapsed / laser.duration);
+      const tailT = Math.max(0, headT - laser.length);
+      const hx = laser.x1 + (laser.x2 - laser.x1) * headT;
+      const hy = laser.y1 + (laser.y2 - laser.y1) * headT;
+      const tx = laser.x1 + (laser.x2 - laser.x1) * tailT;
+      const ty = laser.y1 + (laser.y2 - laser.y1) * tailT;
+      let alphaMul = 1;
+      if (elapsed > laser.duration) alphaMul = 1 - (elapsed - laser.duration) / 200;
+      const grad = ctx.createLinearGradient(tx, ty, hx, hy);
+      grad.addColorStop(0, 'rgba(255,107,53,0)');
+      grad.addColorStop(0.6, 'rgba(255,140,90,' + (0.4 * laser.intensity * alphaMul).toFixed(3) + ')');
+      grad.addColorStop(1, 'rgba(255,210,170,' + (1.0 * laser.intensity * alphaMul).toFixed(3) + ')');
+      ctx.save();
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = laser.thickness;
+      ctx.lineCap = 'round';
+      ctx.shadowColor = 'rgba(255,107,53,' + (0.6 * alphaMul).toFixed(3) + ')';
+      ctx.shadowBlur = 8;
+      ctx.beginPath();
+      ctx.moveTo(tx, ty); ctx.lineTo(hx, hy);
+      ctx.stroke();
+      ctx.shadowBlur = 14;
+      ctx.fillStyle = 'rgba(255,230,200,' + (0.95 * alphaMul).toFixed(3) + ')';
+      ctx.beginPath();
+      ctx.arc(hx, hy, 1.6, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+      return true;
+    }
+
+    function drawShootingStar(s, now) {
+      const elapsed = now - s.bornAt;
+      if (elapsed > s.duration + 300) return false;
+      const t = Math.min(1, elapsed / s.duration);
+      const tailT = Math.max(0, t - s.trail);
+      const hx = s.x1 + (s.x2 - s.x1) * t;
+      const hy = s.y1 + (s.y2 - s.y1) * t;
+      const tx = s.x1 + (s.x2 - s.x1) * tailT;
+      const ty = s.y1 + (s.y2 - s.y1) * tailT;
+      let alphaMul = 1;
+      if (elapsed > s.duration) alphaMul = 1 - (elapsed - s.duration) / 300;
+      const grad = ctx.createLinearGradient(tx, ty, hx, hy);
+      grad.addColorStop(0, 'rgba(255,255,255,0)');
+      grad.addColorStop(0.7, 'rgba(255,255,255,' + (0.5 * alphaMul).toFixed(3) + ')');
+      grad.addColorStop(1, 'rgba(255,255,255,' + alphaMul.toFixed(3) + ')');
+      ctx.save();
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = 1.2;
+      ctx.lineCap = 'round';
+      ctx.shadowColor = 'rgba(255,255,255,' + (0.6 * alphaMul).toFixed(3) + ')';
+      ctx.shadowBlur = 8;
+      ctx.beginPath();
+      ctx.moveTo(tx, ty); ctx.lineTo(hx, hy);
+      ctx.stroke();
+      ctx.fillStyle = 'rgba(255,255,255,' + alphaMul.toFixed(3) + ')';
+      ctx.beginPath();
+      ctx.arc(hx, hy, 1.4, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+      return true;
+    }
+
+    let isPageVisible = true;
+    document.addEventListener('visibilitychange', () => {
+      isPageVisible = !document.hidden;
+      if (isPageVisible) requestAnimationFrame(draw);
+    });
+
+    function draw(now) {
+      if (!isPageVisible) return;
+      if (!lastTime) lastTime = now;
+      const dt = now - lastTime;
+      lastTime = now;
+      ctx.clearRect(0, 0, w, h);
+
+      for (const n of nebulas) {
+        const grad = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r);
+        grad.addColorStop(0, n.color);
+        grad.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, w, h);
+      }
+
+      for (const s of stars) {
+        s.x += s.vx * s.z;
+        s.tw += s.tws;
+        if (s.x < -2) { s.x = w + 2; s.y = Math.random() * h; }
+        const twinkle = (Math.sin(s.tw) + 1) * 0.5;
+        const alpha = (0.35 + twinkle * 0.65) * s.z;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r * s.z, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(' + s.color + ',' + alpha.toFixed(3) + ')';
+        ctx.fill();
+        if (s.r > 1 && s.z > 0.65) {
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.r * s.z * 2.5, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(' + s.color + ',' + (alpha * 0.18).toFixed(3) + ')';
+          ctx.fill();
+        }
+      }
+
+      for (let i = 0; i < dust.length; i++) {
+        const p = dust[i];
+        p.x += p.vx; p.y += p.vy; p.life--;
+        const lifeRatio = p.life / p.maxLife;
+        const alpha = Math.max(0, Math.min(1, lifeRatio) * 0.5);
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 1.3, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(' + p.hue + ',' + alpha.toFixed(3) + ')';
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(' + p.hue + ',' + (alpha * 0.15).toFixed(3) + ')';
+        ctx.fill();
+        if (p.life <= 0 || p.x < -10) dust[i] = makeDust(false);
+      }
+
+      const isMobile = window.innerWidth <= 768;
+      const shootingRate = isMobile ? 9000 : 5000;
+      const laserRate = isMobile ? 5000 : 3000;
+
+      if (Math.random() < dt / shootingRate) shootingStars.push(spawnShootingStar());
+      for (let i = shootingStars.length - 1; i >= 0; i--) {
+        if (!drawShootingStar(shootingStars[i], now)) shootingStars.splice(i, 1);
+      }
+
+      if (Math.random() < dt / laserRate) lasers.push(spawnLaser());
+      for (let i = lasers.length - 1; i >= 0; i--) {
+        if (!drawLaser(lasers[i], now)) lasers.splice(i, 1);
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    resize();
+    window.addEventListener('resize', resize);
+    requestAnimationFrame(draw);
+  })();
+  </script>
+
+</body>
+</html>
