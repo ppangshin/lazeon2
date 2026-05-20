@@ -15,13 +15,6 @@
       --accent: #ff6b35;
       --accent-rgb: 255,107,53;
       --nav-h: 72px;
-      /* wireframe diagram strokes (from v3) */
-      --surface: #0f0f0f;
-      --stroke: #d4d4d4;
-      --stroke-dim: #6a6a6a;
-      --stroke-faint: #3a3a3a;
-      --text-faint: #6a6a6a;
-      --mono: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Apple SD Gothic Neo", "Pretendard", sans-serif;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { background: var(--bg); height: 100%; overflow-x: hidden; }
@@ -764,27 +757,15 @@
       border-radius: 16px;
       overflow: hidden;
       transition: border-color 0.4s ease;
-      display: flex;
-      flex-direction: column;
-    }
-    .about-visual .diagram-area {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 180px;
     }
     .about-visual:hover {
       border-color: rgba(255,107,53,0.2);
     }
     .about-visual svg {
-      width: 84%;
-      height: auto;
-      aspect-ratio: 22 / 15;
+      width: 100%;
+      aspect-ratio: 16 / 7;
       display: block;
     }
-    /* 도면 hover 시 faint 스트로크 강조 (v3 인터랙션) */
-    .about-visual:hover svg .wf { stroke: var(--stroke-dim); transition: stroke 0.4s; }
     .about-visual-body {
       padding: 26px 28px 30px;
       border-top: 0.5px solid rgba(255,255,255,0.06);
@@ -895,8 +876,7 @@
         gap: 14px;
       }
       .about-visual svg {
-        aspect-ratio: 22 / 15;
-        width: 92%;
+        aspect-ratio: 16 / 7;
       }
       .about-visual-body {
         padding: 22px 22px 24px;
@@ -909,7 +889,6 @@
       }
       .about-visual-sub {
         font-size: 13.5px;
-        word-break: keep-all;
       }
       .about-statement {
         margin-top: 20px;
@@ -917,7 +896,6 @@
       }
       .about-statement p {
         font-size: 15px;
-        word-break: keep-all;
       }
       .contact-flow .contact-cards { margin-top: 28px; }
     }
@@ -1029,7 +1007,6 @@
       .section-p {
         font-size: 15px;
         line-height: 1.7;
-        word-break: keep-all;
       }
       .about-text-block .section-p {
         white-space: normal;
@@ -1140,19 +1117,6 @@
         transition-duration: 0.01ms !important;
       }
     }
-
-    /* ===== Wireframe diagram styles (from v3) ===== */
-.ws { fill: none; stroke: var(--stroke); stroke-width: 1; }
-  .wd { fill: none; stroke: var(--stroke-dim); stroke-width: 1; }
-  .wf { fill: none; stroke: var(--stroke-faint); stroke-width: 1; }
-  .wa { fill: none; stroke: var(--accent); stroke-width: 1.4; }
-  .wlabel { fill: var(--text-faint); font-size: 8px; font-family: var(--mono); letter-spacing: 0.08em; }
-  .beam-dash { stroke-dasharray: 5 6; animation: flow 2.5s linear infinite; }
-  @keyframes flow { to { stroke-dashoffset: -22; } }
-  .pulse { animation: pulse 3s ease-in-out infinite; }
-  @keyframes pulse { 0%,100% { opacity: 0.25; } 50% { opacity: 1; } }
-  .pulse2 { animation: pulse 3s ease-in-out infinite; animation-delay: 1.5s; }
-  
   </style>
 </head>
 <body>
@@ -1192,7 +1156,8 @@
           <span class="glow">to a Dental Laser Platform.</span>
         </h1>
         <p class="hero-sub">
-          다이오드 레이저 기술로<span class="mb-br"> </span>덴탈 레이저 플랫폼을 만들어갑니다.
+          라제온은 다이오드 레이저 기술을 기반으로<br/>
+          차세대 치과 의료기기 플랫폼을 만들어갑니다.
         </p>
       </div>
       <div class="scroll-hint" onclick="goTo(1)">
@@ -1207,116 +1172,168 @@
       <div class="inner">
         <p class="section-label">About</p>
         <div class="about-text-block">
-          <p class="section-p">레이저 광원의 핵심 모듈을 직접 다루는 기술력을<span class="mb-br"> </span>바탕으로, 디바이스를 설계하고 만듭니다.</p>
+          <h2 class="section-h2">레이저 광원에서<span class="mb-br"> </span><span class="h2-accent">치과 디바이스까지.</span></h2>
+          <p class="section-p">레이저 광원의 핵심 모듈을 직접 다루는 기술력을 바탕으로, 치과 임상 현장에서 실제로 쓰이는 디바이스를 만듭니다.</p>
         </div>
 
         <div class="about-visuals">
 
           <!-- Visual 1: abstract — light emerging from dark -->
           <div class="about-visual">
-            <div class="diagram-area"><svg viewBox="0 0 220 150" xmlns="http://www.w3.org/2000/svg">
-          <rect class="wf" x="14" y="14" width="192" height="122"/>
-          <!-- 그리드 -->
-          <line class="wf" x1="14" y1="48" x2="206" y2="48"/>
-          <line class="wf" x1="14" y1="82" x2="206" y2="82"/>
-          <line class="wf" x1="78" y1="14" x2="78" y2="136"/>
-          <line class="wf" x1="142" y1="14" x2="142" y2="136"/>
-          <!-- 축 -->
-          <line class="wd" x1="26" y1="118" x2="194" y2="118"/>
-          <line class="wd" x1="26" y1="26" x2="26" y2="118"/>
-          <!-- 스펙트럼 곡선 -->
-          <path class="wa" d="M26 108 Q 52 108 64 74 Q 74 44 92 72 Q 108 100 128 56 Q 142 28 162 78 Q 174 100 194 92"/>
-          <circle class="wa pulse" cx="92" cy="72" r="2.6"/>
-          <circle class="wa pulse2" cx="128" cy="56" r="2.6"/>
-          <!-- 측정 마커 -->
-          <line class="wd" x1="92" y1="72" x2="92" y2="118" stroke-dasharray="2 3"/>
-          <line class="wd" x1="128" y1="56" x2="128" y2="118" stroke-dasharray="2 3"/>
-          <text class="wlabel" x="30" y="132">WAVELENGTH</text>
-        </svg></div>
+            <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <radialGradient id="lightA" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="rgba(255,245,235,0.95)"/>
+                  <stop offset="18%" stop-color="rgba(255,200,150,0.55)"/>
+                  <stop offset="45%" stop-color="rgba(255,130,70,0.20)"/>
+                  <stop offset="75%" stop-color="rgba(255,107,53,0.05)"/>
+                  <stop offset="100%" stop-color="rgba(255,107,53,0)"/>
+                </radialGradient>
+                <radialGradient id="haloA" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="rgba(255,140,80,0.10)"/>
+                  <stop offset="100%" stop-color="rgba(255,107,53,0)"/>
+                </radialGradient>
+              </defs>
+
+              <!-- ambient halo -->
+              <ellipse cx="200" cy="125" rx="260" ry="160" fill="url(#haloA)"/>
+
+              <!-- soft concentric rings, very faint -->
+              <circle cx="200" cy="125" r="50" fill="none" stroke="rgba(255,160,100,0.12)" stroke-width="0.8"/>
+              <circle cx="200" cy="125" r="78" fill="none" stroke="rgba(255,140,80,0.07)" stroke-width="0.6"/>
+              <circle cx="200" cy="125" r="108" fill="none" stroke="rgba(255,120,60,0.04)" stroke-width="0.5"/>
+
+              <!-- main glow -->
+              <circle cx="200" cy="125" r="95" fill="url(#lightA)"/>
+              <circle cx="200" cy="123" r="6" fill="rgba(255,255,255,0.85)"/>
+
+              <!-- scattered light particles -->
+              <circle cx="120" cy="90" r="1.3" fill="rgba(255,210,170,0.55)"/>
+              <circle cx="290" cy="160" r="1" fill="rgba(255,200,150,0.45)"/>
+              <circle cx="265" cy="78" r="0.9" fill="rgba(255,210,170,0.5)"/>
+              <circle cx="105" cy="165" r="1.1" fill="rgba(255,200,150,0.4)"/>
+              <circle cx="320" cy="110" r="0.7" fill="rgba(255,200,150,0.35)"/>
+              <circle cx="80" cy="125" r="0.8" fill="rgba(255,200,150,0.3)"/>
+            </svg>
             <div class="about-visual-body">
               <p class="about-visual-num">01</p>
               <h3 class="about-visual-title">OPTICS</h3>
-              <p class="about-visual-sub">레이저 광원,<span class="mb-br"> </span>모듈 단위로 다룹니다.</p>
+              <p class="about-visual-sub">레이저 광원 기술을 깊이 있게 다룹니다.</p>
             </div>
           </div>
 
           <!-- Visual 2: abstract — a single beam flowing -->
           <div class="about-visual">
-            <div class="diagram-area"><svg viewBox="0 0 220 150" xmlns="http://www.w3.org/2000/svg">
-          <rect class="wf" x="14" y="14" width="192" height="122"/>
-          <!-- 다이오드 모듈 -->
-          <rect class="ws" x="32" y="56" width="50" height="40"/>
-          <rect class="wf" x="40" y="64" width="34" height="24"/>
-          <line class="wd" x1="32" y1="68" x2="82" y2="68"/>
-          <circle class="wf" cx="57" cy="48" r="2.4"/>
-          <line class="wf" x1="57" y1="56" x2="57" y2="50"/>
-          <!-- 렌즈 마운트 -->
-          <rect class="ws" x="104" y="48" width="38" height="56"/>
-          <ellipse class="wd" cx="123" cy="76" rx="9" ry="20"/>
-          <line class="wf" x1="104" y1="60" x2="142" y2="60"/>
-          <line class="wf" x1="104" y1="92" x2="142" y2="92"/>
-          <circle class="wf" cx="123" cy="40" r="2.4"/>
-          <line class="wf" x1="123" y1="48" x2="123" y2="42"/>
-          <!-- 빔 경로 -->
-          <line class="wa beam-dash" x1="82" y1="76" x2="104" y2="76"/>
-          <!-- 출력 커넥터 -->
-          <line class="ws" x1="142" y1="76" x2="176" y2="76"/>
-          <circle class="ws" cx="184" cy="76" r="9"/>
-          <circle class="wf" cx="184" cy="76" r="4"/>
-          <!-- 분해 지시선 -->
-          <line class="wf" x1="57" y1="96" x2="57" y2="112" stroke-dasharray="2 2"/>
-          <line class="wf" x1="123" y1="104" x2="123" y2="118" stroke-dasharray="2 2"/>
-          <text class="wlabel" x="32" y="128">MODULE ASSY</text>
-        </svg></div>
+            <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="streamB" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="rgba(255,107,53,0)"/>
+                  <stop offset="35%" stop-color="rgba(255,140,80,0.4)"/>
+                  <stop offset="55%" stop-color="rgba(255,235,210,0.95)"/>
+                  <stop offset="75%" stop-color="rgba(255,140,80,0.4)"/>
+                  <stop offset="100%" stop-color="rgba(255,107,53,0)"/>
+                </linearGradient>
+                <linearGradient id="streamSoft" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="rgba(255,107,53,0)"/>
+                  <stop offset="50%" stop-color="rgba(255,150,90,0.18)"/>
+                  <stop offset="100%" stop-color="rgba(255,107,53,0)"/>
+                </linearGradient>
+                <radialGradient id="haloB" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="rgba(255,140,80,0.12)"/>
+                  <stop offset="100%" stop-color="rgba(255,107,53,0)"/>
+                </radialGradient>
+                <radialGradient id="focusB" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="rgba(255,250,240,0.9)"/>
+                  <stop offset="40%" stop-color="rgba(255,180,120,0.4)"/>
+                  <stop offset="100%" stop-color="rgba(255,107,53,0)"/>
+                </radialGradient>
+              </defs>
+
+              <!-- ambient halo -->
+              <ellipse cx="200" cy="125" rx="260" ry="160" fill="url(#haloB)"/>
+
+              <!-- wide soft underlay beam -->
+              <path d="M -20 200 Q 200 140 420 50" fill="none" stroke="url(#streamSoft)" stroke-width="40" stroke-linecap="round"/>
+
+              <!-- main flowing beam -->
+              <path d="M -20 200 Q 200 140 420 50" fill="none" stroke="url(#streamB)" stroke-width="3" stroke-linecap="round"/>
+              <!-- bright core line -->
+              <path d="M 40 178 Q 200 140 360 72" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="0.8" stroke-linecap="round"/>
+
+              <!-- focal point on the beam -->
+              <circle cx="200" cy="140" r="34" fill="url(#focusB)"/>
+              <circle cx="200" cy="140" r="3.5" fill="rgba(255,255,255,0.95)"/>
+
+              <!-- light particles along the path -->
+              <circle cx="110" cy="163" r="1.1" fill="rgba(255,210,170,0.55)"/>
+              <circle cx="150" cy="151" r="0.8" fill="rgba(255,200,150,0.45)"/>
+              <circle cx="262" cy="118" r="1" fill="rgba(255,210,170,0.5)"/>
+              <circle cx="300" cy="103" r="0.7" fill="rgba(255,200,150,0.4)"/>
+              <circle cx="330" cy="88" r="0.6" fill="rgba(255,200,150,0.3)"/>
+              <circle cx="80" cy="175" r="0.7" fill="rgba(255,200,150,0.35)"/>
+            </svg>
             <div class="about-visual-body">
               <p class="about-visual-num">02</p>
               <h3 class="about-visual-title">CLINICAL</h3>
-              <p class="about-visual-sub">임상의 실제 문제에서<span class="mb-br"> </span>시작합니다.</p>
+              <p class="about-visual-sub">치과 임상 현장의 시각으로 접근합니다.</p>
             </div>
           </div>
 
           <!-- Visual 3: abstract — one source expanding outward -->
           <div class="about-visual">
-            <div class="diagram-area"><svg viewBox="0 0 220 150" xmlns="http://www.w3.org/2000/svg">
-          <rect class="wf" x="14" y="14" width="192" height="122"/>
-          <!-- 컨베이어 -->
-          <line class="wd" x1="22" y1="106" x2="198" y2="106"/>
-          <line class="wf" x1="22" y1="112" x2="198" y2="112"/>
-          <!-- 스테이션 4개 -->
-          <rect class="ws" x="30" y="74" width="30" height="30"/>
-          <rect class="wf" x="36" y="80" width="18" height="12"/>
-          <rect class="ws" x="74" y="74" width="30" height="30"/>
-          <rect class="wf" x="80" y="80" width="18" height="12"/>
-          <rect class="ws" x="118" y="74" width="30" height="30"/>
-          <rect class="wf" x="124" y="80" width="18" height="12"/>
-          <rect class="wa" x="162" y="74" width="30" height="30"/>
-          <rect class="wf" x="168" y="80" width="18" height="12"/>
-          <!-- 공정 헤드 -->
-          <circle class="wf" cx="45" cy="48" r="3"/>
-          <circle class="wf" cx="89" cy="48" r="3"/>
-          <circle class="wf" cx="133" cy="48" r="3"/>
-          <circle class="wa pulse" cx="177" cy="48" r="3"/>
-          <line class="wf" x1="45" y1="51" x2="45" y2="74"/>
-          <line class="wf" x1="89" y1="51" x2="89" y2="74"/>
-          <line class="wf" x1="133" y1="51" x2="133" y2="74"/>
-          <line class="wa" x1="177" y1="51" x2="177" y2="74"/>
-          <!-- 진행 화살 -->
-          <line class="wa beam-dash" x1="60" y1="89" x2="74" y2="89"/>
-          <line class="wa beam-dash" x1="104" y1="89" x2="118" y2="89"/>
-          <line class="wa beam-dash" x1="148" y1="89" x2="162" y2="89"/>
-          <text class="wlabel" x="30" y="128">PRODUCTION LINE</text>
-        </svg></div>
+            <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <radialGradient id="haloC" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="rgba(255,140,80,0.12)"/>
+                  <stop offset="100%" stop-color="rgba(255,107,53,0)"/>
+                </radialGradient>
+                <radialGradient id="sourceC" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="rgba(255,250,240,0.95)"/>
+                  <stop offset="35%" stop-color="rgba(255,190,130,0.5)"/>
+                  <stop offset="100%" stop-color="rgba(255,107,53,0)"/>
+                </radialGradient>
+                <linearGradient id="rayC" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="rgba(255,235,210,0.85)"/>
+                  <stop offset="60%" stop-color="rgba(255,140,80,0.35)"/>
+                  <stop offset="100%" stop-color="rgba(255,107,53,0)"/>
+                </linearGradient>
+              </defs>
+
+              <!-- ambient halo -->
+              <ellipse cx="100" cy="125" rx="280" ry="170" fill="url(#haloC)"/>
+
+              <!-- expanding rays from a single source -->
+              <line x1="92" y1="125" x2="400" y2="40" stroke="url(#rayC)" stroke-width="2" stroke-linecap="round"/>
+              <line x1="92" y1="125" x2="400" y2="92" stroke="url(#rayC)" stroke-width="2" stroke-linecap="round"/>
+              <line x1="92" y1="125" x2="400" y2="125" stroke="url(#rayC)" stroke-width="2.4" stroke-linecap="round"/>
+              <line x1="92" y1="125" x2="400" y2="158" stroke="url(#rayC)" stroke-width="2" stroke-linecap="round"/>
+              <line x1="92" y1="125" x2="400" y2="210" stroke="url(#rayC)" stroke-width="2" stroke-linecap="round"/>
+
+              <!-- faint arc rings showing reach -->
+              <path d="M 200 35 A 110 110 0 0 1 200 215" fill="none" stroke="rgba(255,150,90,0.14)" stroke-width="0.8"/>
+              <path d="M 270 50 A 165 165 0 0 1 270 200" fill="none" stroke="rgba(255,140,80,0.08)" stroke-width="0.6"/>
+
+              <!-- source point -->
+              <circle cx="92" cy="125" r="44" fill="url(#sourceC)"/>
+              <circle cx="92" cy="125" r="4.5" fill="rgba(255,255,255,0.95)"/>
+
+              <!-- light particles -->
+              <circle cx="240" cy="78" r="1.1" fill="rgba(255,210,170,0.5)"/>
+              <circle cx="300" cy="140" r="0.9" fill="rgba(255,200,150,0.45)"/>
+              <circle cx="210" cy="170" r="0.8" fill="rgba(255,200,150,0.4)"/>
+              <circle cx="330" cy="100" r="0.7" fill="rgba(255,200,150,0.35)"/>
+            </svg>
             <div class="about-visual-body">
               <p class="about-visual-num">03</p>
               <h3 class="about-visual-title">PLATFORM</h3>
-              <p class="about-visual-sub">하나의 기술로,<span class="mb-br"> </span>영역을 넓혀갑니다.</p>
+              <p class="about-visual-sub">하나의 기술을 여러 영역으로 넓혀 갑니다.</p>
             </div>
           </div>
 
         </div>
 
         <div class="about-statement">
-          <p>레이저를 다루는 R&amp;D 기술력으로,<span class="mb-br"> </span>빛의 가능성을 넓혀갑니다.</p>
+          <p>라제온은 다이오드 레이저 기반 의료기기를 자체 설계·제조하는 R&amp;D 중심 기업입니다.</p>
         </div>
       </div>
       <div class="scroll-hint" onclick="goTo(2)">
@@ -1331,7 +1348,8 @@
       <div class="inner">
         <p class="section-label">Contact</p>
         <div class="contact-flow">
-          <p class="section-p" style="margin:0;">제품, 기술, 협업 —<span class="mb-br"> </span>무엇이든 편하게 연락 주세요.</p>
+          <h2 class="section-h2">함께 일하고 싶다면<span class="mb-br"> </span><span class="h2-accent">언제든 연락주세요.</span></h2>
+          <p class="section-p" style="margin:0;">제품 · 기술 · 파트너십에 대한 문의를 환영합니다.</p>
           <div class="contact-cards">
             <div class="contact-card">
               <p class="contact-label">Company</p>
