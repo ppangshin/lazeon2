@@ -84,20 +84,14 @@
       top: 0; left: 0; right: 0;
       z-index: 100;
       height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
       background: rgba(0,0,0,0.5);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 0.5px solid rgba(255,255,255,0.08);
-      overflow: visible;
-    }
-    .nav-inner {
-      max-width: 1200px;
-      height: 100%;
-      margin: 0 auto;
-      padding: 0 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
       overflow: visible;
     }
     .brand-link {
@@ -299,7 +293,6 @@
       margin: 0 0 32px;
       color: #fff;
       letter-spacing: -1px;
-      white-space: nowrap;
     }
     .section-p {
       font-size: 16px;
@@ -308,8 +301,6 @@
       margin: 0 0 18px;
       font-weight: 400;
     }
-    /* 반응형 줄바꿈: 데스크탑은 공백(한 줄), 모바일은 줄바꿈 */
-    .mb-br { display: inline; }
 
     /* Products */
     .product-grid {
@@ -448,12 +439,9 @@
       padding-top: 24px;
       border-top: 0.5px solid rgba(255,255,255,0.08);
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      text-align: center;
-      font-size: 13px;
-      color: rgba(255,255,255,0.4);
+      justify-content: space-between;
+      font-size: 11px;
+      color: rgba(255,255,255,0.35);
       letter-spacing: 0.5px;
     }
 
@@ -688,10 +676,6 @@
       border: 0.5px solid rgba(255,255,255,0.1);
       border-radius: 14px;
       transition: all 0.3s ease;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
     }
     .contact-card:hover {
       border-color: rgba(255,107,53,0.25);
@@ -710,122 +694,11 @@
       margin: 0 0 8px;
       font-weight: 600;
     }
-    .contact-card .contact-main a {
-      color: #fff;
-      text-decoration: none;
-      border-bottom: 1px solid rgba(255,107,53,0.5);
-      padding-bottom: 2px;
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .contact-card .contact-main a:hover {
-      color: var(--accent);
-      border-color: var(--accent);
-    }
     .contact-card .contact-sub {
       font-size: 13px;
       color: rgba(255,255,255,0.55);
       margin: 0;
       line-height: 1.7;
-    }
-
-    /* About v4 — text top + dual visual grid */
-    .about-text-block {
-      max-width: none;
-      margin: 0 auto 56px;
-      text-align: center;
-    }
-    .about-text-block .section-h2 {
-      margin-bottom: 20px;
-    }
-    .about-text-block .section-p {
-      margin: 0 auto;
-      white-space: nowrap;
-    }
-    .about-visuals {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 20px;
-    }
-    .about-visual {
-      position: relative;
-      background:
-        radial-gradient(ellipse at 70% 40%, rgba(255,107,53,0.08) 0%, transparent 55%),
-        radial-gradient(ellipse at 20% 80%, rgba(80,60,100,0.04) 0%, transparent 50%),
-        #060606;
-      border: 0.5px solid rgba(255,255,255,0.08);
-      border-radius: 16px;
-      overflow: hidden;
-      transition: border-color 0.4s ease;
-    }
-    .about-visual:hover {
-      border-color: rgba(255,107,53,0.2);
-    }
-    .about-visual svg {
-      width: 100%;
-      aspect-ratio: 16 / 7;
-      display: block;
-    }
-    .about-visual-body {
-      padding: 26px 28px 30px;
-      border-top: 0.5px solid rgba(255,255,255,0.06);
-    }
-    .about-visual-num {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--accent);
-      letter-spacing: 2px;
-      margin: 0 0 12px;
-    }
-    .about-visual-title {
-      font-size: 20px;
-      font-weight: 800;
-      color: #fff;
-      margin: 0 0 10px;
-      letter-spacing: 0.5px;
-    }
-    .about-visual-sub {
-      font-size: 14px;
-      line-height: 1.6;
-      color: rgba(255,255,255,0.6);
-      margin: 0;
-    }
-    .about-statement {
-      margin-top: 28px;
-      padding: 44px 40px;
-      text-align: center;
-      background: rgba(255,255,255,0.02);
-      border: 0.5px solid rgba(255,255,255,0.08);
-      border-radius: 16px;
-    }
-    .about-statement p {
-      font-size: 17px;
-      line-height: 1.6;
-      color: rgba(255,255,255,0.85);
-      margin: 0 auto;
-      max-width: 720px;
-      letter-spacing: -0.2px;
-    }
-
-    /* Contact v3 — single column flow (no big-num) */
-    .contact-flow {
-      max-width: none;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .contact-flow .section-h2 {
-      max-width: 100vw;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .contact-flow .section-p {
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .contact-flow .contact-cards {
-      max-width: 720px;
-      margin-left: auto;
-      margin-right: auto;
-      margin-top: 48px;
     }
 
     /* ============ Section v2 mobile adjustments ============ */
@@ -863,39 +736,6 @@
       }
       .contact-cards { grid-template-columns: 1fr; gap: 14px; margin-top: 28px; }
       .contact-card { padding: 22px; }
-
-      /* About v4 mobile */
-      .about-text-block {
-        max-width: 100%;
-        margin-bottom: 32px;
-      }
-      .about-visuals {
-        grid-template-columns: 1fr;
-        gap: 14px;
-      }
-      .about-visual svg {
-        aspect-ratio: 16 / 7;
-      }
-      .about-visual-body {
-        padding: 22px 22px 24px;
-      }
-      .about-visual-num {
-        margin: 0 0 10px;
-      }
-      .about-visual-title {
-        font-size: 19px;
-      }
-      .about-visual-sub {
-        font-size: 13.5px;
-      }
-      .about-statement {
-        margin-top: 20px;
-        padding: 32px 26px;
-      }
-      .about-statement p {
-        font-size: 15px;
-      }
-      .contact-flow .contact-cards { margin-top: 28px; }
     }
     @media (max-width: 1024px) {
       .section-grid { gap: 40px; }
@@ -958,7 +798,7 @@
       }
 
       /* Nav */
-      .nav-inner { padding: 0 20px; }
+      nav { padding: 0 20px; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
 
@@ -978,9 +818,6 @@
         line-height: 1.6;
       }
 
-      /* 반응형 줄바꿈: 모바일에서는 줄바꿈으로 전환 */
-      .mb-br { display: block; height: 0; overflow: hidden; }
-
       /* Section common */
       .section-grid {
         grid-template-columns: 1fr;
@@ -994,14 +831,10 @@
         font-size: 32px;
         letter-spacing: -0.8px;
         margin: 0 0 24px;
-        white-space: normal;
       }
       .section-p {
         font-size: 15px;
         line-height: 1.7;
-      }
-      .about-text-block .section-p {
-        white-space: normal;
       }
 
       /* Products */
@@ -1061,27 +894,20 @@
         gap: 6px;
         margin-top: 40px;
         padding-top: 20px;
-        font-size: 12px;
       }
     }
 
     /* ============ Small mobile (480px) ============ */
     @media (max-width: 480px) {
       .hero-title { font-size: 34px; }
-      .section-h2 { font-size: 26px; }
+      .section-h2 { font-size: 28px; }
       .product-card h3 { font-size: 20px; }
       .mobile-menu a { font-size: 28px; padding: 14px 0; }
-      .snap-section { padding-left: 18px; padding-right: 18px; }
-      .about-visual-body { padding: 20px 18px 22px; }
-      .about-statement { padding: 28px 20px; }
-      .about-statement p { font-size: 14px; }
-      .contact-card { padding: 20px; }
-      .hero-sub { font-size: 14px; }
     }
 
     /* ============ Safe area (notch/home bar) ============ */
     @supports (padding: env(safe-area-inset-top)) {
-      .nav-inner { padding-left: max(20px, env(safe-area-inset-left)); padding-right: max(20px, env(safe-area-inset-right)); }
+      nav { padding-left: max(20px, env(safe-area-inset-left)); padding-right: max(20px, env(safe-area-inset-right)); }
       .snap-section {
         padding-left: max(24px, env(safe-area-inset-left));
         padding-right: max(24px, env(safe-area-inset-right));
@@ -1106,26 +932,28 @@
 <body>
 
   <nav>
-    <div class="nav-inner">
     <a href="#" onclick="goTo(0);return false;" class="brand-link">
       <img class="logo-img" alt="LAZEON" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAeAAAABUCAMAAABtJhRwAAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGHADoKpv1yBqL+viUYcLcKakFicD6Q9ArFIEtBxopAiQLZIOYWuA2EkQtg2IXV5SUAJkB4DYRSFBzkB2CpCtkY7ETkJiJxcUgdT3ANk2uTmlyQh3M/Ck5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKbWPz9HbOBQAAAAflBMVEUAAADrZiqsay7ickSWUjLEdExvJw6zWC3VaS6iVDBgLhX9AgKpW1WyOjTybWxyaAvPbUWwa0t0bm3//wD///+xZEX1pli0Y0N3SDCIPCHKajrEYzn//3/mglaqqlX/AP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACweXAAAAAAIHRSTlMA/gf7Y1YR3AScUAEJBwMIqVYFAQGcBOBUWm2tAv8DAZ2+cEMAAA4rSURBVHja7Z2LkqOsEoBbMK0GlMTcZ2b/ff+3PBqTmcRubgadTdWhamu3thKDfHTTNwAAGgWzt3O+3eb3ds5zVBj4TcxTNAPm+jAwkV/s+poDlBGvasTw92W7yquqKKqq6l7+PPynML7XpT08n8+wixns56Etuv7PTBghLzIps58mKwgDrAEevzetyUwe4Ng/roTDhO8XJmKE+rlg1tUm+3ljef3Xplq34J0rJWyZF6hAhA71+XAdtZ/WfRuhnhWwgIr0OVCANZxeB5z1gJth+DZTvl6EKpx+ZHFV8F3uOBc5wmj8CeAV910MJCzg8OdTQPPQ3f6HcXj9mZoGQXtchak9DUWWom1eAhzYW9x3fyrfo7qxP6pYwBmWJlyWOqW8ewDctQuUYjbAjaqYKY37EKFokgEuXwHcDZn2rr3dFMoDeiur3GH32ABXYTI4AH5Syvfv+99geuOHTLyPBHfd1dqrnb3S+01Lg+3tbYBlHkT4thrKzmxongd/voW4hpxd1wDeCXDxtK6RpppwvIPVZOFlA9ypvJ2JMHfkGfbmWbrmsqa/eMtVoloOsHwZsFtHdq+yLWKVfiTgE+yj7Nnq5i89/eQMQoxKy+mGyz8jwX1/hV1JxYjvDwARAzjIV3oA3E3q60s/eQMzCHAJtncPMQz/IcDZ2mamCMDTpBnDELMDzjLht5OePdIzfOEjYHmaYxlGu5I6vhXgboAFb+ljNsVZlydB1b4LcIFlHOBTTizcCkxavALsyitgTWn+mTV4ILznurie/MCGTBkX4MyvpMfDXSEQPZSW8B7toy78Vp3+lwDLgtGRAtbTY21Sj5/oBCy9vuUYsNxSwIkFOHe5HsIPOFWo8phAgpkB1vYlKKjpUVDeCbgPWZo4hbmaW4KdEnjxphw6CY4BLC0f7iaySAG48y71mO+LExCfx8AD+FOUKgpwTgEnNaXROb8//FYDrOPSexeLh9EAC7iKe/o963dvLWg336Jv1nl3S2SYcMC+ZXhpwC4T6+q7J4+tVJa4EbCAixd/TWNhFfZT3oirV4JC6+rkQLaPACwvTsILA9b72rem+WP4IqIBl9Z4wEgAo455vNDtU9/+s87fz5wWLhQWQX4aBB/gTGLZ/jOAnSbWMPQpV3w+piKLnzA7I8EvvK6G3BKk64VMN8YY1ako1f3d9AzFQXqXYT9gZ8x08TV4rMEqMnvTxVaOrPzKx/hcWsAWC7Lo8H4RPXo1N/gJcXjQul7AbrW3LGAchwA6b4Wkv48J13tWP+PT8CUEXPMKOu+X5vDKh5H35Qfc55Xw3wBMVKbMy4qoJzXrciCf4ospAaNALqKytqZ6HQtWvdM2wJ90Fn3Cl/oXAIsdkiVXIbEhdSptwelLWT89PyVgxcVgNmBdIWuHQfKjyAjgFbMOVNaFbVnAOH4joctxd2WacjBLQEmO8gNJVTRdUOXmnmWPNDiluWfHKeCSWbiFjfCSgBW0ZDn8q9WouzKHBNVgxhIwHA9EQsAls+RvoDET5PexjJgA/mBNM7TUlywJmL7S1cBvi/Gr6RTyK/kMbg0zATaMwdStQGqqw4g3w4wBLFgl3fw6YNqvXg3RNxUv+8Kd/BZh/kQ6wEeTM6F1PUl+BxClHTAG55UWBIxw4cKoZo/RSU5vvMzG9wizAWZ84Nxh+vj4flfTMIBLDRdvkmJ5wCV+sqJKvEeJ+xfXej7ewJmayQALmuUvwF7rPOIrswtjLhiLFV2y632hOV9pOcCciXWt9jZoiJn1iiHduaOFM8EwE+DKGVJ285VrSqxSpRWwaZFkTfkavOUA0xHYfldRFuM6ib8vBDuOlgRSBz4IcB3V7mO6J8X8G2ys+lkSvg2ZlcW95mQ1VkRH5hkDu/YXATdAiyi/J/TohQWaFyYSF9/l5TdduhDhTIcbLaqMdLAz7ksk/4t7ZZNgSxwWa/w1wILsgvx2h1Qz0tGh+27CzRd5AD6nRhL+RVSrimrY1SVIxNi2AiPhe93qp/bEsRvsaAtgI2oZ4istBrghleA/3hAN0tc7nDyPJFtitw+T4OhWDIC/yCtUfAgL6QQcRrgmluGHC3D3s4JT0s0vATYwtqQOKH6UVk2mYplQfrNNWzbzAqaOd8mbWEciqDh80CgaBjo6AINAqqQlqcFbCrAeLxny0UkkWaYCJ/0qWre1IcwMWIeVO9IZeH/THXlEcfX4rIA7pcRYk8eRr7QQYPwLpPfosDtkjs0UNcE6SIVjJ2wiwAr2JApd8r+3Gg9vY4uUFG0/R+yAsUTO2de/AbhkwtDmx9VADafxuJUT+PIBDtcbJALciSspymj43/sYya+we8e6d3vsgFmHQY6M92UAqx0RLZJqG/VzbWLjlWoPbImTs+owEWAax7LEW58APx+VQUh6AbMlJNI82RvLAG5JpqW4jI8metXMUg3PN3f2P5kEBw7bU5JBPn0oXoK7lcFwSnp5CdbcTLv9sbXInJLiK6592eVEgKko2ef6T4zx+agbwQBu3ID7+cIoaawXBqyaCds54gLSO0uFna96IJmKDgWs9rcoshyPbD0BMBM2GVWtLAI4IDnGjVxEPFrV/LEQuf+YsbkAG3thQD5UXY1m8CTAXJayrwNbFDACTtnymUf88NFWsOqz1GYDbHfku3mLui/XMD4xEG43aVj9BA1oyYdN3UsAbkw+ZegizCwxlW86I6sKHzZzHGK33iTi0Wdk3RwQzlf6b0nAcJo0djq0OKvh+YbMkBndJNcODa5Ui1a46yDA3IZa+V0KvwBgPU2A+3B92JGqmj8yIUgDsNmksJzS7UNXU0GFBjqipqkOUNH9b1MTVn4HihYAXEI1UTrCnl/zFZRhtRl0d2Fsuw1yQwtmYytexpZKgUGAWUv6e3maH3BL4/DhZlYdIr/auwMpAvBkTyHj6MQ4elyyAUIAAxviWQ8fmx9wA/lUwBv0M0IuLRqejqKAVa1i2nc/CmICx5V3l+MdANnBnS58rEJjfCV5LHeLAN69cCyO8Oo5y/68QgT2OlXRHV1AY8+fIgl/ubq+fQDgjqLgipQEt0CmBoxwmW6iVr7TGNGy/gZvUUwFWMBKvhCoub4Jv4yGAO7nl2UZnl2CvyabWEO4wJ0gPPIhFB1cOp8KMFNqcIl6UmO25OUbFQpYsaXComxmBywsW5y5vIC0qRmHYiz4aREcIkkGeE+6stERdrRqSbDAVjbLAe5rHSTjSOxnB7yja5P1RKL+Fhaye8l1PqnlCI4mYutLssL3klqyeYSZpZmvKxMOmD8eJIdmfiNrNDE/3Z/OI6KNiq+gxJhMcjLATLghoirFML6ea+tKaDhvPbcE0wB6tXcdSqTr09jMUo4yII7vOqpSYM7NZ+F330BJ15oKG4gBzO7YkRpmBoyjSOAJPRPiQOTR+lFOfj0x4BkBc/5+qJJm8qn3sxaDAfdKmjNi1JyAqZfq27OgQveSWvk28DuAa6inumusJWrdAG4DzJokMp9VgmnlrvAIGDXKUAl2ONn42AFK9UuA2d1CRW/l+GWfLX+17Q+2Alb7hnMp5gTMyON/sTKfc+WVaEsgxaZwEgLmgi7yAAFHdnOL57fshwPu02rMfqUZAdM8vL9K46v+zLzhf8EesSKj5TetkbVnRFgefPdPCe7yLHlA6zlZdsDsvnBqFyQD3K0imR+W197IdzWRFeD5xu+GSAlYt4YZ3mLtEuIauLVGSty3EwCrgAsPEgKm62SOeopaH72Q+WLLMCbIb+Jzsoz1KMPGKDZ8dbQed2w/ytABmD3qxwtYTG6k0lEEyBhx2KVoDOLtkYgGS/jkxwRNfB/NGLCu455i+obG8L7wUF5xBuYW2eEw0sLh62H/vsKM0hguwGyhtFeCp2eS5IQyFj1OfNPN+VXmq+ePaBuZJOHvzn3fjhNuu6nQ6yjTlk0D9qsrn4sVYgD3JfgyDjBMv2W7mOT3kxLYYv3c2DdYT23u3wpucF3K7AfaF/RA8FXmOBBcdSbx/X2zCMC78cFyXsD9NcZx+xKktQBx4tKdFdPKMoOqIoO773nMsEmmtFk5/SBWQl8PgkGtLw45u278/tntM36gG7D3iLUcZhvLXOhAwyd7y9ZXCbVgpDMjer+Uw/6pAuu2jwfYPuEB7LsWY0bAz7eJOFYylb8l4M/ejNfQJrhWRxztlx/6AKvSuZFkPsDBYaYGTPGOgAfnRnNbOqPq0GpLCU4gYFud6eyAw4/dEC+V+fwi4Us/9vqFqwtvxZjOUnIvYPfXZwN8O1BqYoHTmxC+FoP1Qelpalpm12pQ45wifsDKJSGzARYqpoCleFPC16253Roz7YLFwgy+lvN2OD9g5xPmAlyE3P78rWPMm4rw7UrhPkEkpyi5/su1J9wYANilA+cCnMeUCSPUbyrC2am9aelqwhANRppnN/VHSE3S3naHJ71eNpHuQqOiYn4H+a6ERQ9AQaQdIYs1HFXI7dJBgJuytgCeR4JlZCpevHgJ7y9r6WNH+AtifAGZX6/fUaV/I0gQYPuxGTMBFpG52rc1s/p2BnW1lcL1dKWvJzq0EJCxDwPcHzogFwMsN7FJVqNy+baA+/yXuqbfQYQgrsR32UfAeQOrMMC7EqRFRcuUbXha9F1IBtqTfLOW3RMz8s/h3NxTvlh5dFGFMJQqdCJ8+jM8JLND+LMNVIYC1vzXt11b9e321wttO7RVPq0+IkEPFm7D6263cL8YXPfRna1NjOWp6odmr2+Zvu6jH76fAA1t6GaLnPZvleDWsf+3UVipv3ik2oyLCT83FbZDWdZMzRJ4EDO0Kd1rxfu2p4vBUQy7nNd5/vFR9S3/2OZDpcxePHqPbcj14234ECLXs/8BtF/SpPYfVv4AAAAASUVORK5CYII=" />
       <span class="logo-text">LAZEON</span>
     </a>
     <ul class="nav-links">
       <li><a onclick="goTo(1)">About</a></li>
-      <li><a onclick="goTo(2)">Contact</a></li>
+      <li><a onclick="goTo(2)">Products</a></li>
+      <li><a onclick="goTo(3)">R&amp;D</a></li>
+      <li><a onclick="goTo(4)">Contact</a></li>
     </ul>
     <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
       <span></span>
       <span></span>
       <span></span>
     </button>
-    </div>
   </nav>
 
   <div class="mobile-menu" id="mobileMenu">
     <a onclick="goToFromMenu(1)"><span class="m-num">01</span>About</a>
-    <a onclick="goToFromMenu(2)"><span class="m-num">02</span>Contact</a>
+    <a onclick="goToFromMenu(2)"><span class="m-num">02</span>Products</a>
+    <a onclick="goToFromMenu(3)"><span class="m-num">03</span>R&amp;D</a>
+    <a onclick="goToFromMenu(4)"><span class="m-num">04</span>Contact</a>
   </div>
 
   <div id="scroll-container">
@@ -1136,8 +964,8 @@
       <div class="inner hero-content">
         <p class="hero-eyebrow">Global Dental Laser Company</p>
         <h1 class="hero-title">
-          From a Laser Module<br/>
-          <span class="glow">to a Dental Laser Platform.</span>
+          The light that<br/>
+          <span class="glow">aligns dental care.</span>
         </h1>
         <p class="hero-sub">
           라제온은 다이오드 레이저 기술을 기반으로<br/>
@@ -1154,170 +982,28 @@
     <section class="snap-section" id="about">
       <div class="sec-glow right"></div>
       <div class="inner">
-        <p class="section-label">About</p>
-        <div class="about-text-block">
-          <h2 class="section-h2">레이저 광원에서<span class="mb-br"> </span><span class="h2-accent">치과 디바이스까지.</span></h2>
-          <p class="section-p">레이저 광원의 핵심 모듈을 직접 다루는 기술력을 바탕으로, 치과 임상 현장에서 실제로 쓰이는 디바이스를 만듭니다.</p>
-        </div>
-
-        <div class="about-visuals">
-
-          <!-- Visual 1: abstract — light emerging from dark -->
-          <div class="about-visual">
-            <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-              <defs>
-                <radialGradient id="lightA" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="rgba(255,245,235,0.95)"/>
-                  <stop offset="18%" stop-color="rgba(255,200,150,0.55)"/>
-                  <stop offset="45%" stop-color="rgba(255,130,70,0.20)"/>
-                  <stop offset="75%" stop-color="rgba(255,107,53,0.05)"/>
-                  <stop offset="100%" stop-color="rgba(255,107,53,0)"/>
-                </radialGradient>
-                <radialGradient id="haloA" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="rgba(255,140,80,0.10)"/>
-                  <stop offset="100%" stop-color="rgba(255,107,53,0)"/>
-                </radialGradient>
-              </defs>
-
-              <!-- ambient halo -->
-              <ellipse cx="200" cy="125" rx="260" ry="160" fill="url(#haloA)"/>
-
-              <!-- soft concentric rings, very faint -->
-              <circle cx="200" cy="125" r="50" fill="none" stroke="rgba(255,160,100,0.12)" stroke-width="0.8"/>
-              <circle cx="200" cy="125" r="78" fill="none" stroke="rgba(255,140,80,0.07)" stroke-width="0.6"/>
-              <circle cx="200" cy="125" r="108" fill="none" stroke="rgba(255,120,60,0.04)" stroke-width="0.5"/>
-
-              <!-- main glow -->
-              <circle cx="200" cy="125" r="95" fill="url(#lightA)"/>
-              <circle cx="200" cy="123" r="6" fill="rgba(255,255,255,0.85)"/>
-
-              <!-- scattered light particles -->
-              <circle cx="120" cy="90" r="1.3" fill="rgba(255,210,170,0.55)"/>
-              <circle cx="290" cy="160" r="1" fill="rgba(255,200,150,0.45)"/>
-              <circle cx="265" cy="78" r="0.9" fill="rgba(255,210,170,0.5)"/>
-              <circle cx="105" cy="165" r="1.1" fill="rgba(255,200,150,0.4)"/>
-              <circle cx="320" cy="110" r="0.7" fill="rgba(255,200,150,0.35)"/>
-              <circle cx="80" cy="125" r="0.8" fill="rgba(255,200,150,0.3)"/>
-            </svg>
-            <div class="about-visual-body">
-              <p class="about-visual-num">01</p>
-              <h3 class="about-visual-title">OPTICS</h3>
-              <p class="about-visual-sub">레이저 광원 기술을 깊이 있게 다룹니다.</p>
+        <p class="section-label">01 — About</p>
+        <div class="about-grid-v2">
+          <div class="big-num">01</div>
+          <div>
+            <h2 class="section-h2">레이저 모듈에서<br/><span class="h2-accent">치과 레이저 플랫폼</span>으로.</h2>
+            <p class="section-p">라제온은 다이오드 레이저 기반 의료기기를 자체 설계·제조하는 R&amp;D 중심 기업입니다. 레이저 광원의 핵심 모듈을 직접 다루는 기술력을 바탕으로, 치과 임상 현장에서 실제로 쓰이는 디바이스를 만듭니다.</p>
+            <p class="section-p" style="margin:0;">모듈 단위의 깊은 이해와 완제품 통합 역량을 함께 갖춘 글로벌 덴탈 레이저 컴퍼니를 지향합니다.</p>
+            <div class="stat-row">
+              <div>
+                <div class="stat-num">4</div>
+                <div class="stat-lbl">Product Lineup</div>
+              </div>
+              <div>
+                <div class="stat-num">KC</div>
+                <div class="stat-lbl">Certified</div>
+              </div>
+              <div>
+                <div class="stat-num">R&amp;D</div>
+                <div class="stat-lbl">기업부설연구소</div>
+              </div>
             </div>
           </div>
-
-          <!-- Visual 2: abstract — a single beam flowing -->
-          <div class="about-visual">
-            <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-              <defs>
-                <linearGradient id="streamB" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="rgba(255,107,53,0)"/>
-                  <stop offset="35%" stop-color="rgba(255,140,80,0.4)"/>
-                  <stop offset="55%" stop-color="rgba(255,235,210,0.95)"/>
-                  <stop offset="75%" stop-color="rgba(255,140,80,0.4)"/>
-                  <stop offset="100%" stop-color="rgba(255,107,53,0)"/>
-                </linearGradient>
-                <linearGradient id="streamSoft" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="rgba(255,107,53,0)"/>
-                  <stop offset="50%" stop-color="rgba(255,150,90,0.18)"/>
-                  <stop offset="100%" stop-color="rgba(255,107,53,0)"/>
-                </linearGradient>
-                <radialGradient id="haloB" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="rgba(255,140,80,0.12)"/>
-                  <stop offset="100%" stop-color="rgba(255,107,53,0)"/>
-                </radialGradient>
-                <radialGradient id="focusB" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="rgba(255,250,240,0.9)"/>
-                  <stop offset="40%" stop-color="rgba(255,180,120,0.4)"/>
-                  <stop offset="100%" stop-color="rgba(255,107,53,0)"/>
-                </radialGradient>
-              </defs>
-
-              <!-- ambient halo -->
-              <ellipse cx="200" cy="125" rx="260" ry="160" fill="url(#haloB)"/>
-
-              <!-- wide soft underlay beam -->
-              <path d="M -20 200 Q 200 140 420 50" fill="none" stroke="url(#streamSoft)" stroke-width="40" stroke-linecap="round"/>
-
-              <!-- main flowing beam -->
-              <path d="M -20 200 Q 200 140 420 50" fill="none" stroke="url(#streamB)" stroke-width="3" stroke-linecap="round"/>
-              <!-- bright core line -->
-              <path d="M 40 178 Q 200 140 360 72" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="0.8" stroke-linecap="round"/>
-
-              <!-- focal point on the beam -->
-              <circle cx="200" cy="140" r="34" fill="url(#focusB)"/>
-              <circle cx="200" cy="140" r="3.5" fill="rgba(255,255,255,0.95)"/>
-
-              <!-- light particles along the path -->
-              <circle cx="110" cy="163" r="1.1" fill="rgba(255,210,170,0.55)"/>
-              <circle cx="150" cy="151" r="0.8" fill="rgba(255,200,150,0.45)"/>
-              <circle cx="262" cy="118" r="1" fill="rgba(255,210,170,0.5)"/>
-              <circle cx="300" cy="103" r="0.7" fill="rgba(255,200,150,0.4)"/>
-              <circle cx="330" cy="88" r="0.6" fill="rgba(255,200,150,0.3)"/>
-              <circle cx="80" cy="175" r="0.7" fill="rgba(255,200,150,0.35)"/>
-            </svg>
-            <div class="about-visual-body">
-              <p class="about-visual-num">02</p>
-              <h3 class="about-visual-title">CLINICAL</h3>
-              <p class="about-visual-sub">치과 임상 현장의 시각으로 접근합니다.</p>
-            </div>
-          </div>
-
-          <!-- Visual 3: abstract — one source expanding outward -->
-          <div class="about-visual">
-            <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-              <defs>
-                <radialGradient id="haloC" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="rgba(255,140,80,0.12)"/>
-                  <stop offset="100%" stop-color="rgba(255,107,53,0)"/>
-                </radialGradient>
-                <radialGradient id="sourceC" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="rgba(255,250,240,0.95)"/>
-                  <stop offset="35%" stop-color="rgba(255,190,130,0.5)"/>
-                  <stop offset="100%" stop-color="rgba(255,107,53,0)"/>
-                </radialGradient>
-                <linearGradient id="rayC" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="rgba(255,235,210,0.85)"/>
-                  <stop offset="60%" stop-color="rgba(255,140,80,0.35)"/>
-                  <stop offset="100%" stop-color="rgba(255,107,53,0)"/>
-                </linearGradient>
-              </defs>
-
-              <!-- ambient halo -->
-              <ellipse cx="100" cy="125" rx="280" ry="170" fill="url(#haloC)"/>
-
-              <!-- expanding rays from a single source -->
-              <line x1="92" y1="125" x2="400" y2="40" stroke="url(#rayC)" stroke-width="2" stroke-linecap="round"/>
-              <line x1="92" y1="125" x2="400" y2="92" stroke="url(#rayC)" stroke-width="2" stroke-linecap="round"/>
-              <line x1="92" y1="125" x2="400" y2="125" stroke="url(#rayC)" stroke-width="2.4" stroke-linecap="round"/>
-              <line x1="92" y1="125" x2="400" y2="158" stroke="url(#rayC)" stroke-width="2" stroke-linecap="round"/>
-              <line x1="92" y1="125" x2="400" y2="210" stroke="url(#rayC)" stroke-width="2" stroke-linecap="round"/>
-
-              <!-- faint arc rings showing reach -->
-              <path d="M 200 35 A 110 110 0 0 1 200 215" fill="none" stroke="rgba(255,150,90,0.14)" stroke-width="0.8"/>
-              <path d="M 270 50 A 165 165 0 0 1 270 200" fill="none" stroke="rgba(255,140,80,0.08)" stroke-width="0.6"/>
-
-              <!-- source point -->
-              <circle cx="92" cy="125" r="44" fill="url(#sourceC)"/>
-              <circle cx="92" cy="125" r="4.5" fill="rgba(255,255,255,0.95)"/>
-
-              <!-- light particles -->
-              <circle cx="240" cy="78" r="1.1" fill="rgba(255,210,170,0.5)"/>
-              <circle cx="300" cy="140" r="0.9" fill="rgba(255,200,150,0.45)"/>
-              <circle cx="210" cy="170" r="0.8" fill="rgba(255,200,150,0.4)"/>
-              <circle cx="330" cy="100" r="0.7" fill="rgba(255,200,150,0.35)"/>
-            </svg>
-            <div class="about-visual-body">
-              <p class="about-visual-num">03</p>
-              <h3 class="about-visual-title">PLATFORM</h3>
-              <p class="about-visual-sub">하나의 기술을 여러 영역으로 넓혀 갑니다.</p>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="about-statement">
-          <p>라제온은 다이오드 레이저 기반 의료기기를 자체 설계·제조하는 R&amp;D 중심 기업입니다.</p>
         </div>
       </div>
       <div class="scroll-hint" onclick="goTo(2)">
@@ -1327,27 +1013,147 @@
       </div>
     </section>
 
+    <section class="snap-section" id="products">
+      <div class="sec-glow left"></div>
+      <div class="inner">
+        <p class="section-label">02 — Products</p>
+        <div class="sec-grid">
+          <div class="big-num">02</div>
+          <div>
+            <h2 class="section-h2" style="margin-bottom: 40px;">치과 레이저 플랫폼의<br/><span class="h2-accent">모든 라인업.</span></h2>
+
+            <div class="prod-grid-v2">
+              <div class="prod-v2">
+                <div class="prod-visual">
+                  <svg viewBox="0 0 72 72" fill="none">
+                    <line x1="12" y1="36" x2="56" y2="36" stroke="#ff6b35" stroke-width="1.5"/>
+                    <circle cx="56" cy="36" r="5" fill="#ff6b35"/>
+                    <circle cx="56" cy="36" r="11" stroke="#ff6b35" stroke-opacity="0.4" stroke-width="0.8"/>
+                    <circle cx="56" cy="36" r="17" stroke="#ff6b35" stroke-opacity="0.2" stroke-width="0.6"/>
+                    <rect x="8" y="32" width="16" height="8" rx="2" fill="rgba(255,107,53,0.2)" stroke="#ff6b35" stroke-width="1"/>
+                  </svg>
+                </div>
+                <div class="body">
+                  <div class="badge">CORE · 01</div>
+                  <h3>Dental Handpiece</h3>
+                  <p>치과용 핸드피스 파이버팁. 정밀한 광 전달과 임상 적용성을 동시에 확보한 라제온의 주력 제품.</p>
+                </div>
+              </div>
+
+              <div class="prod-v2">
+                <div class="prod-visual">
+                  <svg viewBox="0 0 72 72" fill="none">
+                    <ellipse cx="36" cy="36" rx="26" ry="14" stroke="#ff6b35" stroke-width="1.5"/>
+                    <ellipse cx="36" cy="36" rx="32" ry="20" stroke="#ff6b35" stroke-opacity="0.3" stroke-width="0.8"/>
+                    <circle cx="24" cy="36" r="2" fill="#ff6b35"/>
+                    <circle cx="36" cy="36" r="2" fill="#ff6b35"/>
+                    <circle cx="48" cy="36" r="2" fill="#ff6b35"/>
+                  </svg>
+                </div>
+                <div class="body">
+                  <div class="badge">CORE · 02</div>
+                  <h3>LED Mouthpiece</h3>
+                  <p>마우스피스형 LED 광 조사 디바이스. 착용 기반 구강 케어 솔루션을 위한 라제온의 신규 플랫폼.</p>
+                </div>
+              </div>
+
+              <div class="prod-v2 upcoming">
+                <div class="body" style="padding-top: 32px;">
+                  <div class="badge">UPCOMING · 03</div>
+                  <h3>Laser Mouthpiece</h3>
+                  <p>다이오드 레이저 기반 광치료 마우스피스.</p>
+                </div>
+              </div>
+
+              <div class="prod-v2 upcoming">
+                <div class="body" style="padding-top: 32px;">
+                  <div class="badge">UPCOMING · 04</div>
+                  <h3>Laser Debonder</h3>
+                  <p>치아교정 브라켓 안전 디본딩 의료기기.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-hint" onclick="goTo(3)">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M6 9l6 6 6-6" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </section>
+
+    <section class="snap-section" id="rd">
+      <div class="sec-glow right"></div>
+      <div class="inner">
+        <p class="section-label">03 — R&amp;D</p>
+        <div class="sec-grid">
+          <div class="big-num">03</div>
+          <div>
+            <h2 class="section-h2" style="margin-bottom: 40px;">모듈을 다루는 회사가<br/><span class="h2-accent">만들 수 있는 의료기기.</span></h2>
+            <p class="section-p" style="max-width: 580px;">광원에서 완제품까지, 라제온은 모든 단계의 기술을 직접 소유합니다.</p>
+
+            <div class="rd-items" style="margin-top: 40px;">
+              <div class="rd-row">
+                <span class="rd-row-num">01</span>
+                <div class="rd-row-content">
+                  <p class="rd-row-title">Laser Module</p>
+                  <p class="rd-row-desc">다이오드 레이저 모듈 자체 설계 및 광학 정렬 기술</p>
+                </div>
+                <span class="rd-row-arrow">→</span>
+              </div>
+              <div class="rd-row">
+                <span class="rd-row-num">02</span>
+                <div class="rd-row-content">
+                  <p class="rd-row-title">Device Integration</p>
+                  <p class="rd-row-desc">모듈을 임상 완제품으로 통합하는 엔지니어링 역량</p>
+                </div>
+                <span class="rd-row-arrow">→</span>
+              </div>
+              <div class="rd-row">
+                <span class="rd-row-num">03</span>
+                <div class="rd-row-content">
+                  <p class="rd-row-title">Medical Compliance</p>
+                  <p class="rd-row-desc">의료기기 인증 체계를 고려한 품질관리 프로세스</p>
+                </div>
+                <span class="rd-row-arrow">→</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-hint" onclick="goTo(4)">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M6 9l6 6 6-6" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </section>
+
     <section class="snap-section" id="contact">
       <div class="sec-glow left"></div>
       <div class="inner">
-        <p class="section-label">Contact</p>
-        <div class="contact-flow">
-          <h2 class="section-h2">함께 일하고 싶다면<span class="mb-br"> </span><span class="h2-accent">언제든 연락주세요.</span></h2>
-          <p class="section-p" style="margin:0;">제품 · 기술 · 파트너십에 대한 문의를 환영합니다.</p>
-          <div class="contact-cards">
-            <div class="contact-card">
-              <p class="contact-label">Company</p>
-              <p class="contact-main">주식회사 라제온</p>
-              <p class="contact-sub">LAZEON CORP.</p>
+        <p class="section-label">04 — Contact</p>
+        <div class="sec-grid">
+          <div class="big-num">04</div>
+          <div>
+            <h2 class="section-h2">함께 일하고 싶다면<br/><span class="h2-accent">언제든 연락주세요.</span></h2>
+            <p class="section-p" style="margin:0;">제품·기술·파트너십에 대한 모든 문의를 환영합니다.</p>
+            <div class="contact-cards">
+              <div class="contact-card">
+                <p class="contact-label">Company</p>
+                <p class="contact-main">주식회사 라제온</p>
+                <p class="contact-sub">LAZEON Inc.<br/>광주광역시</p>
+              </div>
+              <div class="contact-card">
+                <p class="contact-label">Inquiry</p>
+                <p class="contact-main">business@lazeon.com</p>
+                <p class="contact-sub">제품·기술·파트너십<br/>모든 문의 환영합니다</p>
+              </div>
             </div>
-            <div class="contact-card">
-              <p class="contact-label">Email</p>
-              <p class="contact-main"><a href="mailto:admin@lazeon.ai">admin@lazeon.ai</a></p>
+            <div class="contact-footer">
+              <span>© 2026 LAZEON Inc.</span>
+              <span>All rights reserved.</span>
             </div>
-          </div>
-          <div class="contact-footer">
-            <span>LAZEON CORP. · Laser Medical Device Company</span>
-            <span>© 2026 LAZEON. All rights reserved.</span>
           </div>
         </div>
       </div>
